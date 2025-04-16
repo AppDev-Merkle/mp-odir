@@ -24,7 +24,7 @@ app.post('/submit', async (req, res) => {
 
     // Prepare the payload for GA4 Measurement Protocol
     const payload = {
-        client_id: '666',  // Client ID (you can generate a unique ID for each user/session)
+        client_id: '777',  // Client ID (you can generate a unique ID for each user/session)
         events: [
             {
                 name: 'form_submission',  // Event name
@@ -32,7 +32,8 @@ app.post('/submit', async (req, res) => {
                     ep_name: name  // Event parameter (user name)
                 }
             }
-        ]
+        ],
+        debug_mode: true //Enable debug mode
     };
 
     try {
