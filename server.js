@@ -24,27 +24,24 @@ app.post('/submit', async (req, res) => {
 
     // Prepare the payload for GA4 Measurement Protocol
     const payload = {
-        client_id: '777',  // Client ID (you can generate a unique ID for each user/session)
+        client_id: '555',  // Use a unique client ID for each user/session
         events: [
             {
                 name: 'form_submission',  // Event name
                 params: {
-                    ep_name: name  // Event parameter (user name)
+                    ep_name: name  // Event parameter (user name from the form)
                 }
             }
-        ],
-        debug_mode: true //Enable debug mode
+        ]
     };
 
     try {
         // Send the data to GA4 using Measurement Protocol
-        await axios.post(`https://www.google-analytics.com/mp/collect?api_secret=${GA_API_SECRET}`, null, {
-            params: {
-                ...payload
-            }
+        const response = await axios.post(`https://www.google-analytics.com/mp/collect?api_secret=${GA_API_SECRET}`, null, {
+            params: payload  // Send the parameters as URL-encoded query strings
         });
 
-        console.log('Data sent to GA4 successfully!');
+        console.log('Data sent to GA4 successfully!', response.data);
 
         // Send a success response back to the client
         res.json({ message: 'Data received and sent to GA4 successfully!' });
