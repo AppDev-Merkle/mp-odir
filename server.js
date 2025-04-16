@@ -25,7 +25,7 @@ app.post('/submit', async (req, res) => {
     // Prepare the payload for the Measurement Protocol
     const payload = {
         v: '2',  // Protocol version
-        tid: G-8LT2WWTHY6,  // GA4 Measurement ID
+        tid: 'G-8LT2WWTHY6',  // GA4 Measurement ID
         cid: '555',  // Client ID (can be randomly generated or based on user session)
         t: 'event',  // Event type
         en: 'form_submission',  // Event name (you can modify this)
