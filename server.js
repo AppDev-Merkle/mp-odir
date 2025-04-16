@@ -24,12 +24,14 @@ app.post('/submit', async (req, res) => {
 
     // Prepare the payload for GA4 Measurement Protocol
     const payload = {
-        client_id: '555',  // Use a unique client ID for each user/session
+        client_id: '1731780262.1744797717',  // Use a unique client ID for each user/session
         events: [
             {
                 name: 'form_submission',  // Event name
                 params: {
-                    ep_name: name  // Event parameter (user name from the form)
+                    session_id: '1744797716',
+                    ep_name: name,  // Event parameter (user name from the form)
+                    engagement_time_msec: 100,
                 }
             }
         ]
