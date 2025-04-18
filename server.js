@@ -31,11 +31,11 @@ app.post('/submit', async (req, res) => {
         client_id: clientId,  // Use a unique client ID for each user/session
         events: [
             {
-                name: 'form_submission',  // Event name
+                name: 'test_event',  // Event name
                 params: {
-                    session_id: uuidv4(),  // Use a new session ID or session tracking if needed
                     ep_name: name,  // Event parameter (user name from the form)
-                    engagement_time_msec: 100,
+                    session_id: uuidv4(),  // Use a new session ID or session tracking if needed
+                    engagement_time_msec: 100,  // Engagement time for the event (can be adjusted)
                 }
             }
         ]
