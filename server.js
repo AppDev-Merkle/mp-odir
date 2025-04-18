@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
+const { v4: uuidv4 } = require('uuid');  // For generating unique client IDs
 
 // Create the Express app
 const app = express();
@@ -22,14 +23,17 @@ app.post('/submit', async (req, res) => {
     const { name } = req.body;  // Get the name from the client-side form submission
     console.log('Received name:', name);  // Log the data to the console
 
+    // Generate a unique client ID (this can be stored in a cookie or session for each user)
+    const clientId = uuidv4();
+
     // Prepare the payload for GA4 Measurement Protocol
     const payload = {
-        client_id: '1731780262.1744797717',  // Use a unique client ID for each user/session
+        client_id: clientId,  // Use a unique client ID for each user/session
         events: [
             {
                 name: 'form_submission',  // Event name
                 params: {
-                    session_id: '1744797716',
+                    session_id: uuidv4(),  // Use a new session ID or session tracking if needed
                     ep_name: name,  // Event parameter (user name from the form)
                     engagement_time_msec: 100,
                 }
@@ -39,9 +43,7 @@ app.post('/submit', async (req, res) => {
 
     try {
         // Send the data to GA4 using Measurement Protocol
-        const response = await axios.post(`https://www.google-analytics.com/mp/collect?api_secret=${GA_API_SECRET}`, null, {
-            params: payload  // Send the parameters as URL-encoded query strings
-        });
+        const response = await axios.post(`https://www.google-analytics.com/mp/collect?api_secret=${GA_API_SECRET}`, payload);
 
         console.log('Data sent to GA4 successfully!', response.data);
 
