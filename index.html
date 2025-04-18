@@ -1,58 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics 4 (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LT2WWTHY6"></script> <!-- Replace with your GA4 Measurement ID -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        // Your GA4 Measurement ID
+        gtag('config', 'G-8LT2WWTHY6');  <!-- Replace with your Measurement ID -->
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GA4 Measurement Protocol Example</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  <!-- jQuery for AJAX -->
-        <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PHM8KM5S');</script>
-    <!-- End Google Tag Manager -->
+    <title>GA4 Setup Example</title>
 </head>
 <body>
-        <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHM8KM5S"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-     
-    <h1>Send Event to GA4</h1>
-
-    <!-- Simple form to collect user name -->
+    <h1>Welcome to GA4 Setup</h1>
     <form id="myForm">
         <label for="name">Enter your name:</label>
         <input type="text" id="name" name="name" placeholder="Your Name" required>
         <button type="submit">Submit</button>
     </form>
 
-    <p id="response"></p>  <!-- Display the response from the server -->
-
-    <script>
-        // Handle form submission with AJAX
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevent default form submission
-
-            const name = document.getElementById('name').value;  // Get the input value
-
-            // Send the name data to the server via AJAX
-            $.ajax({
-                url: 'http://localhost:3000/submit',  // The server route
-                type: 'POST',  // Request method
-                contentType: 'application/json',  // Content type (JSON)
-                data: JSON.stringify({ name: name }),  // Data sent in JSON format
-                success: function(response) {
-                    // Display server's response message
-                    document.getElementById('response').innerText = response.message;
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                    document.getElementById('response').innerText = 'Error sending data to the server.';
-                }
-            });
-        });
-    </script>
+    <p id="response"></p> <!-- To show response from the server -->
 </body>
 </html>
